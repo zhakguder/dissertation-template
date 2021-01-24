@@ -366,6 +366,11 @@
 \def\@campus{Berkeley}  % default value is Berkeley
 \def\campus#1{\gdef\@campus{#1}}
 
+\def\location#1{\gdef\@location{#1}}
+\def\completionmonth#1{\gdef\@completionmonth{#1}}
+\def\completionyear#1{\gdef\@completionyear{#1}}
+\def\university#1{\gdef\@university{#1}}
+\def\authortitle#1{\gdef\@authortitle{#1}}
 % The alwayssingle environment ensures that front matter is always
 % single column even in a double-column document.
 
@@ -403,41 +408,54 @@
 
   \begin{center}
     \fmfont
-    \@title\par
+    \MakeUppercase{\@title}\par
     \vspace{14pt minus 4pt}
     by \par
     {\@author}\par
     \vspace{28pt minus 8pt}
-    A \@dissertation submitted in partial satisfaction of the \par
-    requirements for the degree of \par
-    \ifdefined\@jointinst
-      Joint {\@degree}\\with {\@jointinst}\par
-    \else
-      {\@degree}\par
-    \fi
-    in \par
-    {\@field}\par
-    \ifdefined\@emphasis
-      and the Designated Emphasis\par
-      in\par
-      {\@emphasis}\par
-    \fi
-    in the \par
-    Graduate Division \par
-    of the \par
-    University of California, {\expandafter{\@campus}}\par
-    \vspace{34pt minus 8pt}
-    {
-      \fmsmallfont
-      Committee in charge: \par
-      {\@chair}, \@chairtitle \\
-      \ifdefined\@cochair
-        {\@cochair}, Co-chair \\
-      \fi
-      {\@othermembers}\par
-      \vspace{14pt minus 4pt}
-      \@degreesemester \ \@degreeyear\par
-    }
+    A DISSERTATION \par
+    \vfill
+    Presented to the Faculty of \par
+    The Graduate College at the \@university \par
+    In Partial Fulfillment of Requirements \par
+    For the Degree of Doctor of Philosophy
+    \vfill
+    \par
+    Major: \@field \par
+    % \ifdefined\@jointinst
+    %   Joint {\@degree}\\with {\@jointinst}\par
+    % \else
+    %   {\@degree}\par
+    % \fi
+    % in \par
+    % {\@field}\par
+    % \ifdefined\@emphasis
+    %   and the Designated Emphasis\par
+    %   in\par
+    %   {\@emphasis}\par
+    % \fi
+    % in the \par
+    % Graduate Division \par
+    % of the \par
+    % University of California, {\expandafter{\@campus}}\par
+    % \vspace{34pt minus 8pt}
+    % {
+    %   \fmsmallfont
+    %   Committee in charge: \par
+    %   {\@chair}, \@chairtitle \\
+    %   \ifdefined\@cochair
+    %     {\@cochair}, Co-chair \\
+    %   \fi
+    %   {\@othermembers}\par
+    %   \vspace{14pt minus 4pt}
+    %   \@degreesemester \ \@degreeyear\par
+    % }
+    \vfill
+    Under the Supervision of Professors \@chair and \@cochair \par
+    \vfill
+    \@location \par
+    \vfill
+    \@completionmonth, \@completionyear
   \end{center}
   \vfill
   \hrule height 0pt
@@ -454,50 +472,50 @@
 % be present in the electronically submitted part).  It requires that
 % the \year, \author, \title, and \campus macros have been defined.
 
-\def\approvalpage{%
-\ifnum\@masters=0
-  \ifdraftdoc\else
-    \ClassWarning{ucbthesis}%
-      {The final submitted version should not have an approval page}%
-\fi\fi
+% \def\approvalpage{%
+% \ifnum\@masters=0
+  % \ifdraftdoc\else
+    % \ClassWarning{ucbthesis}%
+      % {The final submitted version should not have an approval page}%
+% \fi\fi
 
-\begin{alwayssingle}
-\thispagestyle{empty}
+% \begin{alwayssingle}
+% \thispagestyle{empty}
 
-\fmfont \noindent
-The \@dissertation of {\@author}, titled {\@title}, is approved:
+% \fmfont \noindent
+% The \@dissertation of {\@author}, titled {\@title}, is approved:
 
-\vfil
-{\baselineskip=36pt
-\settowidth\@tempdima{\ifdefined\@cochair Co-chair\else\@chairtitle\fi\quad}
-\hbox to\textwidth{\raise 3pt\hbox to\@tempdima{\@chairtitle\hfil}%
-  \leaders\hrule\hskip 0pt plus .75fill\qquad
-  \raise 3pt\hbox{Date}\quad \leaders\hrule\hskip 0pt plus .25fill}
-\hbox to\textwidth{\raise 3pt\hbox to\@tempdima{\ifdefined\@cochair Co-chair\fi
-    \hfil}%
-  \leaders\hrule\hskip 0pt plus .75fill\qquad
-  \raise 3pt\hbox{Date}\quad \leaders\hrule\hskip 0pt plus .25fill}
-\hbox to\textwidth{\hskip\@tempdima \leaders\hrule\hskip 0pt plus .75fill\qquad
-  \raise 3pt\hbox{Date}\quad \leaders\hrule\hskip 0pt plus .25fill}
-\ifnum \@numberofmembers > 3
-\hbox to\textwidth{\hskip\@tempdima \leaders\hrule\hskip 0pt plus .75fill\qquad
-  \raise 3pt\hbox{Date}\quad \leaders\hrule\hskip 0pt plus .25fill}
-\fi
-\ifnum \@numberofmembers > 4
-\hbox to\textwidth{\hskip\@tempdima \leaders\hrule\hskip 0pt plus .75fill\qquad
-  \raise 3pt\hbox{Date}\quad \leaders\hrule\hskip 0pt plus .25fill}
-\fi
-\ifnum \@numberofmembers > 5
-\hbox to\textwidth{\hskip\@tempdima \leaders\hrule\hskip 0pt plus .75fill\qquad
-  \raise 3pt\hbox{Date}\quad \leaders\hrule\hskip 0pt plus .25fill}
-\fi
-}
-\vfil
-\begin{center}
-{\fmfont University of California, {\@campus}}
-\end{center}
-\end{alwayssingle}
-}
+% \vfil
+% {\baselineskip=36pt
+% \settowidth\@tempdima{\ifdefined\@cochair Co-chair\else\@chairtitle\fi\quad}
+% \hbox to\textwidth{\raise 3pt\hbox to\@tempdima{\@chairtitle\hfil}%
+%   \leaders\hrule\hskip 0pt plus .75fill\qquad
+%   \raise 3pt\hbox{Date}\quad \leaders\hrule\hskip 0pt plus .25fill}
+% \hbox to\textwidth{\raise 3pt\hbox to\@tempdima{\ifdefined\@cochair Co-chair\fi
+%     \hfil}%
+  % \leaders\hrule\hskip 0pt plus .75fill\qquad
+  % \raise 3pt\hbox{Date}\quad \leaders\hrule\hskip 0pt plus .25fill}
+% \hbox to\textwidth{\hskip\@tempdima \leaders\hrule\hskip 0pt plus .75fill\qquad
+  % \raise 3pt\hbox{Date}\quad \leaders\hrule\hskip 0pt plus .25fill}
+% \ifnum \@numberofmembers > 3
+% \hbox to\textwidth{\hskip\@tempdima \leaders\hrule\hskip 0pt plus .75fill\qquad
+  % \raise 3pt\hbox{Date}\quad \leaders\hrule\hskip 0pt plus .25fill}
+% \fi
+% \ifnum \@numberofmembers > 4
+% \hbox to\textwidth{\hskip\@tempdima \leaders\hrule\hskip 0pt plus .75fill\qquad
+  % \raise 3pt\hbox{Date}\quad \leaders\hrule\hskip 0pt plus .25fill}
+% \fi
+% \ifnum \@numberofmembers > 5
+% \hbox to\textwidth{\hskip\@tempdima \leaders\hrule\hskip 0pt plus .75fill\qquad
+  % \raise 3pt\hbox{Date}\quad \leaders\hrule\hskip 0pt plus .25fill}
+% \fi
+% }
+% \vfil
+% \begin{center}
+% {\fmfont University of California, {\@campus}}
+% \end{center}
+% \end{alwayssingle}
+% }
 
 % COPYRIGHTPAGE
 %
@@ -505,18 +523,18 @@ The \@dissertation of {\@author}, titled {\@title}, is approved:
 % This is a macro, not an environment, because it can be generated
 % with the \title, \author, and \year macros.
 
-\def\copyrightpage{
-\begin{alwayssingle}
-\thispagestyle{empty}
-\begin{center}
-{\fmfont
-\@title\par
-\vspace{1in}
-Copyright \@degreeyear\par
-by\par
-\@author}
-\end{center}
-\end{alwayssingle}}
+% \def\copyrightpage{
+% \begin{alwayssingle}
+% \thispagestyle{empty}
+% \begin{center}
+% {\fmfont
+% \@title\par
+% \vspace{1in}
+% Copyright \@degreeyear\par
+% by\par
+% \@author}
+% \end{center}
+% \end{alwayssingle}}
 
 
 % ABSTRACT
@@ -529,26 +547,16 @@ by\par
 \renewenvironment{abstract}
   {\begin{alwayssingle}
     % \pagestyle{simple}
-    \thispagestyle{simple}
+    \thispagestyle{empty}
     \setlength{\parindent}{0pt}
     \setlength{\parskip}{\baselineskip}
     \setcounter{page}{1}
     \begin{center}
-      \abstractname \par
-      \@title\par
-      by\par
-      \@author\par
-      {\@degree} in \@field\par
-          \ifdefined\@emphasis
-            and the Designated Emphasis in\par
-            {\@emphasis}\par
-          \fi
-      University of California, {\@campus}\par
-      {\@chair}, \@chairtitle \par
-      \ifdefined\@cochair
-        {\@cochair}, Co-chair\par
-      \fi
+      \MakeUppercase{\@title}\par
+      \@author, \@authortitle\par
+      \@university, \@completionyear
     \end{center}
+    Advisor: \@chair
     \setlength{\parskip}{.6\baselineskip}
     \vspace{.4\baselineskip}
   }
