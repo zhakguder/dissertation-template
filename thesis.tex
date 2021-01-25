@@ -6,15 +6,25 @@
 
 \documentclass{ucbthesis}
 \usepackage{biblatex}
-\usepackage{rotating} % provides sidewaystable and sidewaysfigure
+% \usepackage{rotating} % provides sidewaystable and sidewaysfigure
 
+\usepackage{hvfloat}
+\usepackage{lipsum} % TODO: Remove after format testing
+\usepackage{scrlayer}
+\DeclareNewLayer[
+  background,
+  innermargin,
+  outermargin,
+  contents=\layercontentsmeasure
+]{measurelayer}
+\DeclareNewPageStyleByLayers{measurestyle}{measurelayer}
+% \usepackage[type=none]{fgruler}
 % To compile this file, run "latex thesis", then "biber thesis"
 % (or "bibtex thesis", if the output from latex asks for that instead),
 % and then "latex thesis" (without the quotes in each case).
 
 % Double spacing, if you want it.  Do not use for the final copy.
-% \def\dsp{\def\baselinestretch{2.0}\large\normalsize}
-% \dsp
+\def\dsp{\def\baselinestretch{2.0}\large\normalsize}
 
 % If the Grad. Division insists that the first paragraph of a section
 % be indented (like the others), then include this line:
@@ -29,11 +39,12 @@
 \hyphenation{mar-gin-al-ia}
 \hyphenation{bra-va-do}
 \setlrmarginsandblock{*}{1in}{1.5}
+\setulmarginsandblock{1in}{1in}{*}
 \setheaderspaces{0.75in}{*}{*}
 \checkandfixthelayout
 
 \begin{document}
-
+% \fgruler[in]{upperleft}{0in}{0in}
 % Declarations for Front Matter
 
 \title{Eulerian Knowledge Prexy and Lyman Zig on Wiggly}
@@ -76,6 +87,7 @@
 % \approvalpage
 % \copyrightpage
 
+\raggedright
 \include{abstract}
 
 \begin{frontmatter}
@@ -95,8 +107,11 @@ transcript alike. Washable an acre. To canned, silence in foreign.
 
 % You can delete the \clearpage lines if you don't want these to start on
 % separate pages.
+\begin{KeepFromToc}
+  \tableofcontents
+\end{KeepFromToc}
 
-\tableofcontents
+% each entry in the Table of figures and table of tables should be at most one sentence long
 \clearpage
 \listoffigures
 \clearpage
@@ -121,6 +136,8 @@ And exposition? Of go. No upstairs do fingering.
 
 % (Optional) \part{First Part}
 
+\dsp % Rest of the document will be double spaced
+\pagestyle{headings}
 \include{chap1}
 \include{chap2}
 

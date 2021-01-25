@@ -407,7 +407,7 @@
   \setcounter{page}{1}
 
   \begin{center}
-    \fmfont
+    \fmsmallfont
     \MakeUppercase{\@title}\par
     \vspace{14pt minus 4pt}
     by \par
@@ -721,6 +721,23 @@
 % \@namedef{scriptsizetabular*}#1{\par\scriptsize\SingleSpacing
 %  \setlength\dimen@{#1}%
 %    \edef\@halignto{to\the\dimen@}\@tabular}
-% \expandafter \let \csname endscriptsizetabular*\endcsname = \endtabular
+%    \expandafter \let \csname endscriptsizetabular*\endcsname = \endtabular
+\renewcommand{\chaptername}{CHAPTER}
+\newcommand{\maketable}[2]{
+\hvFloat[%
+floatPos=hb,
+useOBox=true,
+objectAngle=90,
+capPos=left,
+capVPos=top,
+capWidth=h,
+capAngle=90,
+objectPos=l
+]{table}{}{#1}{#2} %last curlies are for table label
+}
+\renewcommand*\contentsname{Table of Contents}
 
+% Following two commands together turn off the running headers
+\renewcommand{\chaptermark}[1]{ \markboth{}{} }
+\renewcommand{\sectionmark}[1]{ \markright{}{} }
 \endinput
